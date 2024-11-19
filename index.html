@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50 States 50 Stories</title>
+    <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+</head>
+
+<style>
+    #map {
+    width: 100%;
+    height: 600px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+</style>
+<body>
+    <h1>Map</h1>
+
+    <div id ="map"></div>
+
+
+    
+<!-- Map -->
+    <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+    <script>
+        // Creating map options
+        var mapOptions = {
+        center: [39.8283, -98.5795],
+        zoom: 4
+        }
+        
+        var map = new L.map('map', mapOptions);
+        var layer = new     L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        map.addLayer(layer);
+
+    //     //Only Show United States
+    //     var bounds = [
+    //     [24.396308, -125.0], // Southwest corner (Hawaii is west of this point, so adjust as needed)
+    //     [49.384358, -66.93457], // Northeast corner
+    // ];
+    // map.setMaxBounds(bounds);
+    // // Prevent zooming out too far
+    // map.setMinZoom(4);
+
+
+        //Markers
+
+        //Las Vegas Office
+        var saharaBuilding = L.marker([36.145278, -115.211163]).addTo(map);
+        var disneyland = L.marker([33.81353, -117.92010]).addTo(map);
+
+        var saharapopupContent = `
+        <div class="popup-container">
+            <img src="https://recruitment.ccsd.net/wp-content/uploads/2023/12/michael.jpg" />
+            <h2>Las Vegas</h2>
+            <p>Here is some content</p>
+            </div>
+        `;
+
+        var disneylandpopupContent = `
+        <div class="popup-container">
+            <h2>Disneyland</h2>
+            <p>this is disneyland</p>
+            </div>
+        `;
+
+        saharaBuilding.bindPopup(saharapopupContent).openPopup();
+        disneyland.bindPopup(disneylandpopupContent).openPopup();
+
+        </script>
+</body>
+</html>
